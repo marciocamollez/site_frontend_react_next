@@ -1,22 +1,44 @@
-import Link from 'next/link';
+import React, { useState } from 'react';
 
-const classeLink = {
-    marginRight: 15
-}
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+  } from 'reactstrap';
 
 
-const Menu = () => (
+
+const Menu = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
     <div>
-        <Link href="/">
-            <a style={classeLink}>Home</a>
-        </Link>
-        <Link href="/empresa">
-            <a style={classeLink}>Empresa</a>
-        </Link>
-        <Link href="/contato">
-            <a style={classeLink}>Contato</a>
-        </Link>
+      <Navbar color="danger" dark expand="md">
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/empresa">Empresa</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/contato">Contato</NavLink>
+            </NavItem>
+            
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
-);
+  );
+};
 
 export default Menu;
