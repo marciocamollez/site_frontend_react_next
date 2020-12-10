@@ -1,15 +1,14 @@
-import React from 'react';
-import { Alert } from 'reactstrap';
-
 import Menu from '../components/Menu';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Rodape from '../components/Rodape';
 
 function Empresa(){
-    return (
+    return(
         <div>
             <Menu />
-            Página Empresa
+            Sobre Empresa
+            <Rodape />
         </div>
     );
 }
+
 export default Empresa;

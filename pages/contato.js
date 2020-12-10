@@ -1,15 +1,14 @@
-import React from 'react';
-import { Alert } from 'reactstrap';
-
 import Menu from '../components/Menu';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Rodape from '../components/Rodape';
 
 function Contato(){
-    return (
+    return(
         <div>
             <Menu />
-            Página Contato
+           Contato 
+            <Rodape />
         </div>
     );
 }
+
 export default Contato;
