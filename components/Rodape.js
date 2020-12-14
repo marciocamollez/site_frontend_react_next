@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Rodape = () => {
+const Rodape = (props) => {
     return (
         <div>
             <Jumbotron fluid className="rodape">
@@ -28,7 +28,7 @@ const Rodape = () => {
                 <Container>
                     <div className="row">
                         <div className="col-12 col-sm-12 col-md-4">
-                            <h5>Celke</h5>
+                            <h5>{props.data.tituloPg}</h5>
                             <ul className="list-unstyled">
                                 <li>
                                     <Link href="/">
@@ -49,47 +49,37 @@ const Rodape = () => {
                         </div>
 
                         <div className="col-12 col-sm-12 col-md-4">
-                            <h5>Contato</h5>
+                            <h5>{props.data.tituloCont}</h5>
                             <ul className="list-unstyled">
                                 <li>
-                                    <Link href="tel:XXXXXXXXXXX">
-                                        <a className="link-rodape">(XX) XXXXX-XXXX</a>
+                                    <a href="tel:XXXXXXXXXXX" className="link-rodape">{props.data.telCont}</a>
+                                </li>
+                                <li>
+                                    <Link href="/contato">
+                                        <a className="link-rodape">{props.data.endCont}</a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/contato">
-                                        <a className="link-rodape">Av. Winston Churchill</a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/contato">
-                                        <a className="link-rodape">CNPJ: XX.XXX.XXX/XXXX-XX</a>
+                                        <a className="link-rodape">{props.data.cnpjCont}</a>
                                     </Link>
                                 </li>
                             </ul>
                         </div>
                         <div className="col-12 col-sm-12 col-md-4">
-                            <h5>Redes Sociais</h5>
+                            <h5>{props.data.tituloRedSoc}</h5>
                             <ul className="list-unstyled">
                                 <li>
-                                    <Link href="https://www.instagram.com/celkecursos">
-                                        <a className="link-rodape" target="_black">Instagram</a>
-                                    </Link>
+                                    <a href={props.data.instLink} className="link-rodape" target="_black">{props.data.instTitulo}</a>
                                 </li>
                                 <li>
-                                    <Link href="https://www.facebook.com/celkecursos/">
-                                        <a className="link-rodape" target="_black">Facebook</a>
-                                    </Link>
+                                    <a href={props.data.facLink} className="link-rodape" target="_black">{props.data.facTitulo}</a>
                                 </li>
                                 <li>
-                                    <Link href="https://www.youtube.com/channel/UC5ClMRHFl8o_MAaO4w7ZYug">
-                                        <a className="link-rodape" target="_black">Youtube</a>
-                                    </Link>
+                                    <a href={props.data.youtubeLink} className="link-rodape" target="_black">{props.data.youtubeTitulo}</a>
                                 </li>
                                 <li>
-                                    <Link href="https://twitter.com/celkecursos">
-                                        <a className="link-rodape" target="_black">Twiter</a>
-                                    </Link>
+                                    <a href={props.data.twiterLink} className="link-rodape" target="_black">{props.data.twiterTitulo}</a>
                                 </li>
                             </ul>
                         </div>

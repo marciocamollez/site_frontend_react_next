@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
     Collapse,
     Navbar,
@@ -9,39 +8,37 @@ import {
     NavItem,
     NavLink,
     Container
-  } from 'reactstrap';
-
-
+} from 'reactstrap';
 
 const Menu = (props) => {
+
     const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+    const toggle = () => setIsOpen(!isOpen);
 
-  return (
-    <div>
-      <Navbar color="dark" dark expand="md" className="fixed-top">
-        <Container>
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/empresa">Empresa</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/contato">Contato</NavLink>
-            </NavItem>
-            
-          </Nav>
-        </Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  );
-};
+    return (
+        <div>
+            <Navbar color="dark" dark expand="md" className="fixed-top">
+                <Container>
+                    <NavbarBrand href="/">Celke</NavbarBrand>
+                    <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="mr-auto" navbar>
+                            <NavItem>
+                                <NavLink href="/">Home</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/empresa">Sobre Empresa</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="/contato">Contato</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </Container>
+            </Navbar>
+        </div>
+    );
+}
 
 export default Menu;

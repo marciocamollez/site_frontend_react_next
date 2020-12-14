@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Head from 'next/head';
 
 import { Jumbotron, Container } from 'reactstrap';
@@ -11,20 +12,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faLightbulb, faWarehouse, faAd, faAddressBook, faAward, faBeer } from '@fortawesome/free-solid-svg-icons';
-library.add(faCoffee, faLightbulb, faWarehouse, faAd, faAddressBook, faAward, faBeer);
+import { fas } from '@fortawesome/free-solid-svg-icons';
+library.add(fas);
 
-function Home(props) {
-  return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <meta name='robots' content='index,follow' />
-        <meta name='description' content='Site de ... sobre ...' />
-      </Head>
-      <Menu />
-      <Jumbotron fluid className="descr-top">
-        <style>{`.descr-top{
+const Home = (data) => (
+  <div>
+    <Head>
+      <title>Home</title>
+      <meta name='robots' content='index,follow' />
+      <meta name='description' content='Site de ... sobre ...' />
+    </Head>
+    <Menu />
+    <Jumbotron fluid className="descr-top">
+      <style>{`.descr-top{
           background-image: url(/topo_home.png);
           background-position: center;
           background-repeat: no-repeat;
@@ -35,19 +35,19 @@ function Home(props) {
           text-align: center;
           margin-bottom: 0rem !important;
       }`}</style>
-        <Container>
-          <h1 className="display-4">Temos a solução que a sua empresa precisa</h1>
-          <p className="lead mb-4">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+      <Container>
+    <h1 className="display-4">{data.response.home.tituloTopo}</h1>
+        <p className="lead mb-4">{data.response.home.descTopo}</p>
 
-          <Link href="/contato">
-            <a className="btn btn-lg btn-outline-light">ENTRE EM CONTATO</a>
-          </Link>
+        <Link href={data.response.home.linkBtnTopo}>
+          <a className="btn btn-lg btn-outline-light">{data.response.home.tituloBtnTopo}</a>
+        </Link>
 
-        </Container>
-      </Jumbotron>
+      </Container>
+    </Jumbotron>
 
-      <Jumbotron fluid className="servicos">
-        <style>{`
+    <Jumbotron fluid className="servicos">
+      <style>{`
         .servicos{
           padding-top: 100px;
           padding-bottom: 100px;
@@ -63,41 +63,41 @@ function Home(props) {
           font-size: 3rem;
           color: #FFF;
         }`}</style>
-        <Container>
-          <div className="row featurette">
-            <div className="col-md-6">
-              <h2 className="featurette-heading">First featurette heading. <span className="text-muted">It’ll blow your mind.</span></h2>
-              <p className="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-            <div className="col-md-6">
-              <div className="row circulo-serv">
-                <style>{`.circulo-serv{
+      <Container>
+        <div className="row featurette">
+          <div className="col-md-6">
+            <h2 className="featurette-heading">{data.response.home.tituloServ} </h2>
+            <p className="lead">{data.response.home.descServ}</p>
+          </div>
+          <div className="col-md-6">
+            <div className="row circulo-serv">
+              <style>{`.circulo-serv{
                   padding-top: 50px;
                   padding-bottom: 50px;
                 }`}</style>
-                <div className="col-sm-4">
-                  <div className="icone text-center">
-                    <FontAwesomeIcon icon="coffee" />
-                  </div>
+              <div className="col-sm-4">
+                <div className="icone text-center">
+                  <FontAwesomeIcon icon={data.response.home.iconeUmServ} />
                 </div>
-                <div className="col-sm-4">
-                  <div className="icone text-center">
-                    <FontAwesomeIcon icon="lightbulb" />
-                  </div>
+              </div>
+              <div className="col-sm-4">
+                <div className="icone text-center">
+                  <FontAwesomeIcon icon={data.response.home.iconeDoisServ} />
                 </div>
-                <div className="col-sm-4">
-                  <div className="icone text-center">
-                    <FontAwesomeIcon icon="warehouse" />
-                  </div>
+              </div>
+              <div className="col-sm-4">
+                <div className="icone text-center">
+                  <FontAwesomeIcon icon={data.response.home.iconeTresServ} />
                 </div>
               </div>
             </div>
           </div>
-        </Container>
-      </Jumbotron>
+        </div>
+      </Container>
+    </Jumbotron>
 
-      <Jumbotron fluid className="video">
-        <style>{`.video{        
+    <Jumbotron fluid className="video">
+      <style>{`.video{        
             text-align: center;    
             background-color: #000;  
             margin-bottom: 0rem !important;
@@ -108,23 +108,23 @@ function Home(props) {
             .video-titulo{
               margin-bottom: 30px;}
               `}
-        </style>
-        <Container>
-          <h2 className="display-4 video-titulo">Vídeo</h2>
-          <p className="lead text-center video-parag">Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna.</p>
+      </style>
+      <Container>
+        <h2 className="display-4 video-titulo">{data.response.home.tituloVideo}</h2>
+        <p className="lead text-center video-parag">{data.response.home.descTituloVideo}</p>
 
-          <div className="row justify-content-md-center">
-            <div className="col-12 col-md-8">
-              <div className="embed-responsive embed-responsive-16by9">
-                <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/bWEJu6W5Fn4?rel=0"></iframe>
-              </div>
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-md-8">
+            <div className="embed-responsive embed-responsive-16by9">
+              <iframe className="embed-responsive-item" src={data.response.home.embedVideo}></iframe>
             </div>
           </div>
-        </Container>
-      </Jumbotron>
+        </div>
+      </Container>
+    </Jumbotron>
 
-      <Jumbotron fluid className="projeto">
-        <style>{`.projeto{
+    <Jumbotron fluid className="projeto">
+      <style>{`.projeto{
               padding-top: 50px;
               padding-bottom: 50px;
               background-color: #fff;
@@ -153,51 +153,59 @@ function Home(props) {
               border-radius: 150px;
               font-size: 5rem;
             }`}
-        </style>
-        <Container>
-          <div className="marketing text-center">
-            <h1 className="display-4">Projetos</h1>
-            <div className="row row-projeto">
-              <div className="col-sm-3">
-                <div className="circulo circulo-sm">
-                  <FontAwesomeIcon icon="ad" />
-                </div>
-                <h2>Titulo</h2>
-                <p>Praesent id ligula porta felis euismod semper commodo.</p>
+      </style>
+      <Container>
+        <div className="marketing text-center">
+          <h1 className="display-4">{data.response.home.tituloProj}</h1>
+          <div className="row row-projeto">
+            <div className="col-sm-3">
+              <div className="circulo circulo-sm">
+                <FontAwesomeIcon icon={data.response.home.iconeUmProj} />
               </div>
-
-              <div className="col-sm-3">
-                <div className="circulo circulo-sm">
-                  <FontAwesomeIcon icon="address-book" />
-                </div>
-                <h2>Titulo</h2>
-                <p>Praesent id ligula porta felis euismod semper commodo.</p>
-              </div>
-
-              <div className="col-sm-3">
-                <div className="circulo circulo-sm">
-                  <FontAwesomeIcon icon="award" />
-                </div>
-                <h2>Titulo</h2>
-                <p>Praesent id ligula porta felis euismod semper commodo.</p>
-              </div>
-
-              <div className="col-sm-3">
-                <div className="circulo circulo-sm">
-                  <FontAwesomeIcon icon="beer" />
-                </div>
-                <h2>Titulo</h2>
-                <p>Praesent id ligula porta felis euismod semper commodo.</p>
-              </div>
-
+              <h2>{data.response.home.tituloUmProj}</h2>
+              <p>{data.response.home.descUmProj}</p>
             </div>
-          </div>
-        </Container>
-      </Jumbotron>
 
-      <Rodape />
-    </div>
-  );
-}
+            <div className="col-sm-3">
+              <div className="circulo circulo-sm">
+                <FontAwesomeIcon icon={data.response.home.iconeDoisProj} />
+              </div>
+              <h2>{data.response.home.tituloDoisProj}</h2>
+              <p>{data.response.home.descDoisProj}</p>
+            </div>
+
+            <div className="col-sm-3">
+              <div className="circulo circulo-sm">
+                <FontAwesomeIcon icon={data.response.home.iconeTresProj} />
+              </div>
+              <h2>{data.response.home.tituloTresProj}</h2>
+              <p>{data.response.home.descTresProj}</p>
+            </div>
+
+            <div className="col-sm-3">
+              <div className="circulo circulo-sm">
+                <FontAwesomeIcon icon={data.response.home.iconeQuatroProj} />
+              </div>
+              <h2>{data.response.home.tituloQuatroProj}</h2>
+              <p>{data.response.home.descQuatroProj}</p>
+            </div>
+
+          </div>
+        </div>
+      </Container>
+    </Jumbotron>
+    
+    <Rodape data={data.response.rodape} />
+  </div>
+);
+
+Home.getInitialProps = async () => {
+  const response = await axios.get(
+    'http://localhost:8080/home'
+    );
+    //console.log(response.data);
+
+    return {response: response.data}
+};
 
 export default Home
